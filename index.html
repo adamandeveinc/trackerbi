@@ -30,8 +30,8 @@
         content="Unify marketing, sales, and customer data. Track smarter, respond faster, and grow stronger with AI-powered brand intelligence.">
     <meta property="twitter:image" content="assets/TrackerBI-logo.png">
 
-    <link rel="icon" type="image/png" href="assets/TrackerBI-logo.png">
-    <link rel="apple-touch-icon" href="assets/TrackerBI-logo.png">
+    <link rel="icon" type="image/png" href="assets/fav.png">
+    <link rel="apple-touch-icon" href="assets/fav.png">
     <style>
         * {
             margin: 0;
@@ -62,8 +62,11 @@
             --navbar-height: 60px;
         }
 
-        html {
-            scroll-snap-type: y mandatory;
+        /* Scroll snapping only on desktop */
+        @media (min-width: 1025px) {
+            html {
+                scroll-snap-type: y mandatory;
+            }
         }
 
         body {
@@ -109,6 +112,23 @@
             box-sizing: border-box;
             position: relative;
             z-index: 1;
+        }
+
+        /* Disable scroll-snap on all sections for mobile */
+        @media (max-width: 1024px) {
+            html {
+                scroll-snap-type: none;
+            }
+            .section,
+            .hero,
+            .challenge-section,
+            .solution-section,
+            .journey-section,
+            .demo-section,
+            .login-section,
+            .footer {
+                scroll-snap-align: none;
+            }
         }
 
         .section:nth-child(even) {
@@ -1041,20 +1061,21 @@
 
         @media (max-width: 768px) {
             body {
-                padding-top: 120px;
-                /* Reserves space for the fixed header */
+                padding-top: 80px;
             }
 
+            /* ── Navbar ── */
             .navbar {
-                padding: 12px 0;
+                padding: 8px 0;
             }
 
             .navbar-content {
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
+                justify-content: space-between;
             }
 
             .navbar-logo img {
-                height: 50px !important;
+                height: 48px !important;
             }
 
             .mobile-menu-toggle {
@@ -1063,10 +1084,9 @@
 
             .navbar-links {
                 position: fixed;
-                top: 70px;
+                top: 65px;
                 left: 0;
                 right: 0;
-                z-index: 999;
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
@@ -1080,11 +1100,10 @@
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
                 border-bottom: 1px solid var(--gray-200);
                 z-index: 3000;
-                /* Ensure it's above everything */
             }
 
             .navbar-links.mobile-active {
-                max-height: 400px;
+                max-height: 420px;
                 opacity: 1;
                 visibility: visible;
             }
@@ -1093,7 +1112,7 @@
                 width: 100%;
                 padding: 14px 16px;
                 border-radius: 8px;
-                margin-bottom: 6px;
+                margin-bottom: 4px;
                 text-align: left;
             }
 
@@ -1111,50 +1130,22 @@
                 display: block;
             }
 
+            /* ── Hero ── */
             .hero {
-                padding: 60px 0;
-                margin-top: 20px;
-                /* Explicit margin as requested to push text down */
+                padding: 100px 0 60px;
                 min-height: auto;
-            }
-
-            /* Mobile Dashboard Styles */
-            .glass-panel {
-                height: 200px;
-                transform: rotateX(10deg);
-                width: 100%;
-            }
-
-            .panel-header {
-                height: 30px;
-                padding: 0 10px;
-            }
-
-            .panel-body {
-                padding: 15px;
-            }
-
-            .floating-badge {
-                top: 50px;
-                right: 15px;
-                font-size: 0.75rem;
-                padding: 6px 12px;
-            }
-
-            .hero-dashboard-mockup {
-                margin-top: 40px;
-                perspective: 600px;
+                margin-top: 0;
             }
 
             .hero h1 {
-                font-size: 2.2rem;
-                margin-bottom: 20px;
-                line-height: 1.3;
+                font-size: 2rem;
+                margin-bottom: 16px;
+                line-height: 1.25;
             }
 
             .hero-tagline {
                 font-size: 1rem;
-                margin-bottom: 32px;
+                margin-bottom: 28px;
                 line-height: 1.6;
             }
 
@@ -1164,42 +1155,99 @@
             }
 
             .cta-button {
-                padding: 16px 32px;
-                font-size: 1rem;
+                padding: 14px 28px;
+                font-size: 0.95rem;
                 width: 100%;
                 justify-content: center;
             }
 
+            /* ── Hero Dashboard Mockup ── */
+            .hero-dashboard-mockup {
+                margin-top: 32px;
+                perspective: 600px;
+            }
+
+            .glass-panel {
+                height: 180px;
+                transform: rotateX(8deg);
+                width: 100%;
+            }
+
+            .panel-header {
+                height: 28px;
+                padding: 0 10px;
+            }
+
+            .panel-body {
+                padding: 12px;
+            }
+
+            .floating-badge {
+                top: 40px;
+                right: 12px;
+                font-size: 0.72rem;
+                padding: 5px 10px;
+            }
+
+            /* ── Generic Sections ── */
             .section {
-                padding: 80px 0;
-                /* Normalized padding */
+                padding: 70px 0 50px;
+                min-height: auto;
             }
 
             .section-title {
-                font-size: 2rem;
-                line-height: 1.3;
+                font-size: 1.9rem;
+                line-height: 1.25;
             }
 
             .section-subtitle {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 line-height: 1.7;
+                margin-bottom: 40px;
             }
 
+            /* ── Challenge Section ── */
+            .challenge-section {
+                padding: 100px 0 60px;
+                min-height: auto;
+            }
+
+            /* ── Solution Section ── */
+            .solution-section {
+                padding: 80px 0 60px;
+                min-height: auto;
+            }
+
+            /* ── Journey Section ── */
+            .journey-section {
+                padding: 80px 0 60px;
+                min-height: auto;
+            }
+
+            /* ── Demo Section ── */
+            .demo-section {
+                padding: 90px 0 60px !important;
+                min-height: auto;
+            }
+
+            /* ── Features / Why Us ── */
             .features-grid {
-                gap: 20px;
+                gap: 16px;
             }
 
             .feature-card {
                 flex-direction: column;
                 text-align: center;
-                padding: 32px 24px;
-                gap: 20px;
+                padding: 28px 20px;
+                gap: 16px;
+                animation: none; /* disable float on mobile for perf */
             }
 
             .feature-icon {
                 width: 64px;
                 height: 64px;
                 min-width: 64px;
+                animation: none;
             }
 
             .feature-icon svg {
@@ -1208,16 +1256,27 @@
             }
 
             .feature-title {
-                font-size: 1.2rem;
+                font-size: 1.15rem;
+            }
+
+            /* ── Login ── */
+            .login-section {
+                padding: 100px 0 60px;
+                min-height: auto;
             }
 
             .login-container {
-                margin: 0 20px;
-                padding: 40px 28px;
+                margin: 0 16px;
+                padding: 36px 24px;
             }
 
             .login-title {
-                font-size: 1.75rem;
+                font-size: 1.65rem;
+            }
+
+            /* ── Footer ── */
+            .footer {
+                min-height: auto;
             }
 
             .footer-content {
@@ -1227,127 +1286,138 @@
             }
 
             .footer-logo img {
-                height: 70px !important;
+                height: 60px !important;
             }
 
             .footer-links {
-                gap: 20px;
+                gap: 16px;
                 flex-direction: column;
             }
         }
 
         @media (max-width: 480px) {
             body {
-                padding-top: 70px;
+                padding-top: 72px;
             }
 
             .container {
-                padding: 0 16px;
+                padding: 0 14px;
             }
 
             .navbar-logo img {
-                height: 60px !important;
+                height: 44px !important;
             }
 
+            /* ── Hero ── */
             .hero {
-                padding: 60px 0 50px;
-                margin-top: 0;
+                padding: 90px 0 48px;
+                min-height: auto;
             }
 
             .hero h1 {
-                font-size: 1.75rem;
-                margin-bottom: 16px;
-                line-height: 1.3;
+                font-size: 1.65rem;
+                margin-bottom: 14px;
+                line-height: 1.25;
             }
 
             .hero-tagline {
-                font-size: 0.95rem;
-                margin-bottom: 28px;
+                font-size: 0.9rem;
+                margin-bottom: 24px;
                 line-height: 1.6;
             }
 
             .hero-ctas {
                 flex-direction: column;
-                gap: 12px;
+                gap: 10px;
             }
 
             .cta-button {
                 width: 100%;
                 justify-content: center;
-                padding: 14px 28px;
-                font-size: 0.95rem;
+                padding: 13px 24px;
+                font-size: 0.9rem;
             }
 
+            /* ── Small hero mockup ── */
+            .glass-panel {
+                height: 150px;
+            }
+
+            /* ── Generic Sections ── */
             .section {
-                padding: 50px 0;
+                padding: 60px 0 40px;
+                min-height: auto;
             }
 
             .section-title {
-                font-size: 1.65rem;
-                line-height: 1.3;
-                margin-bottom: 16px;
-            }
-
-            .section-subtitle {
-                font-size: 0.95rem;
-                line-height: 1.6;
-                margin-bottom: 40px;
-            }
-
-            .feature-card {
-                padding: 32px 20px;
-            }
-
-            .feature-icon {
-                width: 56px;
-                height: 56px;
-                margin-bottom: 20px;
-            }
-
-            .feature-icon svg {
-                width: 28px;
-                height: 28px;
-            }
-
-            .feature-title {
-                font-size: 1.1rem;
+                font-size: 1.5rem;
+                line-height: 1.25;
                 margin-bottom: 12px;
             }
 
-            .feature-description {
+            .section-subtitle {
                 font-size: 0.9rem;
-            }
-
-            .login-container {
-                padding: 28px 20px;
-                margin: 0 16px;
-            }
-
-            .login-title {
-                font-size: 1.5rem;
+                line-height: 1.6;
                 margin-bottom: 32px;
             }
 
+            /* ── Feature Cards ── */
+            .feature-card {
+                padding: 24px 16px;
+            }
+
+            .feature-icon {
+                width: 52px;
+                height: 52px;
+                min-width: 52px;
+            }
+
+            .feature-icon svg {
+                width: 26px;
+                height: 26px;
+            }
+
+            .feature-title {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+
+            .feature-description {
+                font-size: 0.88rem;
+            }
+
+            /* ── Login ── */
+            .login-container {
+                padding: 28px 18px;
+                margin: 0 12px;
+            }
+
+            .login-title {
+                font-size: 1.4rem;
+                margin-bottom: 28px;
+            }
+
             .form-input {
-                padding: 12px 16px;
-                font-size: 0.95rem;
+                padding: 11px 14px;
+                font-size: 0.9rem;
             }
 
             .login-btn {
-                padding: 12px;
-                font-size: 0.95rem;
+                padding: 11px;
+                font-size: 0.9rem;
             }
 
+            /* ── Footer ── */
             .footer-logo img {
-                height: 60px !important;
+                height: 50px !important;
             }
 
             .footer-links {
-                gap: 16px;
+                gap: 12px;
             }
 
             .footer-links a {
-                font-size: 0.9rem;
+                font-size: 0.88rem;
             }
         }
 
@@ -1549,6 +1619,70 @@
         }
 
 
+        /* Vision (Challenge) Section — Heading Styles */
+        .vision-heading-wrap {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .vision-title-block {
+            display: inline-block;
+            position: relative;
+        }
+
+        .vision-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .vision-title.plain {
+            color: var(--gray-900);
+        }
+
+        .vision-title.gradient {
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0;
+        }
+
+        .vision-underline {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+            border-radius: 2px;
+            animation: lineGlow 2s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .vision-heading-wrap {
+                margin-bottom: 36px;
+            }
+            .vision-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .vision-heading-wrap {
+                margin-bottom: 28px;
+            }
+            .vision-title {
+                font-size: 1.75rem;
+                line-height: 1.15;
+            }
+        }
+
         /* Challenge Section Styles */
         .challenge-section {
             min-height: 100vh;
@@ -1558,7 +1692,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
+            overflow: visible; /* allow rings to breathe */
             padding: 110px 0 60px 0;
             color: var(--gray-900);
             scroll-snap-align: start;
@@ -1662,6 +1796,7 @@
             position: relative;
             width: 400px;
             height: 400px;
+            max-width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1744,23 +1879,201 @@
         @media (max-width: 1200px) {
             .challenge-grid {
                 grid-template-columns: 1fr;
-                gap: 60px;
+                gap: 40px;
                 padding: 0 24px;
             }
 
             .challenge-logo-container {
-                width: 300px;
-                height: 300px;
-                margin: 40px auto;
+                width: 280px;
+                height: 280px;
+                margin: 20px auto;
             }
 
             .center-logo {
-                width: 160px;
+                width: 140px;
             }
 
             .challenge-content-box {
                 max-width: 600px;
                 margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .challenge-section {
+                padding: 90px 0 50px;
+                min-height: auto;
+            }
+
+            .challenge-section > .container:first-child {
+                margin-bottom: 40px !important;
+            }
+
+            .challenge-grid {
+                gap: 24px;
+                padding: 0 16px;
+            }
+
+            .challenge-content-box {
+                padding: 28px 24px;
+                border-radius: 20px;
+                animation: none; /* disable float on mobile */
+            }
+
+            .challenge-content-box.right-box {
+                animation: none;
+            }
+
+            .challenge-content-box h3 {
+                font-size: 1.35rem;
+                margin-bottom: 14px;
+            }
+
+            .challenge-content-box p {
+                font-size: 0.95rem;
+                line-height: 1.65;
+            }
+
+            .challenge-logo-container {
+                width: 240px;
+                height: 240px;
+                margin: 10px auto;
+            }
+
+            .rotating-logo-bg {
+                width: 200px;
+                height: 200px;
+            }
+
+            .center-logo {
+                width: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .challenge-section {
+                padding: 80px 0 40px;
+            }
+
+            .challenge-grid {
+                gap: 18px;
+                padding: 0 12px;
+            }
+
+            .challenge-content-box {
+                padding: 22px 18px;
+                border-radius: 16px;
+            }
+
+            .challenge-content-box h3 {
+                font-size: 1.15rem;
+                margin-bottom: 10px;
+            }
+
+            .challenge-content-box p {
+                font-size: 0.88rem;
+                line-height: 1.6;
+            }
+
+            .challenge-logo-container {
+                width: 200px;
+                height: 200px;
+            }
+
+            .rotating-logo-bg {
+                width: 160px;
+                height: 160px;
+            }
+
+            .center-logo {
+                width: 100px;
+            }
+        }
+
+        /* Solution Section — Heading Styles */
+        .sol-heading-wrap {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .sol-title-block {
+            display: inline-block;
+            position: relative;
+        }
+
+        .sol-title {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 50%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 0;
+            line-height: 1.2;
+            display: inline-block;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .sol-underline {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+            border-radius: 2px;
+            animation: lineGlow 2s ease-in-out infinite;
+        }
+
+        .sol-subtitle {
+            margin-top: 30px;
+            font-size: 1.3rem;
+            color: #6b7280;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .gradient-text-purple {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .sol-heading-wrap {
+                margin-top: 30px;
+                margin-bottom: 10px;
+            }
+            .sol-title {
+                font-size: 1.9rem;
+                line-height: 1.25;
+            }
+            .sol-subtitle {
+                font-size: 1rem;
+                margin-top: 22px;
+                line-height: 1.7;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sol-heading-wrap {
+                margin-top: 20px;
+            }
+            .sol-title {
+                font-size: 1.5rem;
+                line-height: 1.2;
+            }
+            .sol-subtitle {
+                font-size: 0.92rem;
+                margin-top: 18px;
             }
         }
 
@@ -1978,43 +2291,239 @@
 
         @media (max-width: 1024px) {
             .solution-section {
-                height: auto;
                 min-height: auto;
-                padding: 80px 0;
+                padding: 80px 0 60px;
             }
 
             .solution-hub-container {
                 height: auto;
-                flex-direction: column;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                padding: 0 20px;
                 margin-top: 40px;
             }
 
-            .solution-node {
-                position: static;
-                width: 100%;
-                max-width: 500px;
-                margin-bottom: 60px;
-                transform: none !important;
+            /* Hide absolute connector lines */
+            .connector {
+                display: none;
             }
 
-            .connector,
+            /* Central hub becomes a full-width banner on tablet */
+            .central-hub {
+                grid-column: span 2;
+                width: 140px;
+                height: 140px;
+                margin: 0 auto 20px;
+                order: -1;
+            }
+
             .central-hub::before {
                 display: none;
             }
 
-            .central-hub {
-                width: 240px;
-                height: 240px;
-                margin-bottom: 60px;
-                order: -1;
+            .central-hub img {
+                width: 100px;
             }
 
-            .central-hub img {
-                width: 180px;
+            /* Nodes become cards */
+            .solution-node {
+                position: static;
+                width: 100%;
+                transform: none !important;
+                background: white;
+                border-radius: 16px;
+                border: 1px solid var(--gray-200);
+                padding: 24px 20px;
+                box-shadow: 0 4px 20px rgba(139, 92, 246, 0.06);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-bottom: 0;
+                transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            }
+
+            .solution-node:hover {
+                border-color: var(--accent-light);
+                box-shadow: 0 8px 30px rgba(139, 92, 246, 0.12);
+            }
+
+            /* Disable float animations on tablet/mobile */
+            .node-1 .node-icon-wrapper, .node-1 .node-content,
+            .node-2 .node-icon-wrapper, .node-2 .node-content,
+            .node-3 .node-icon-wrapper, .node-3 .node-content,
+            .node-4 .node-icon-wrapper, .node-4 .node-content,
+            .node-5 .node-icon-wrapper, .node-5 .node-content {
+                animation: none;
+            }
+
+            .node-icon-wrapper {
+                margin: 0 auto 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .solution-section {
+                padding: 70px 0 50px;
+            }
+
+            .solution-hub-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+                padding: 0 14px;
+                margin-top: 28px;
+            }
+
+            /* Hide the center logo hub on mobile — redundant in card layout */
+            .central-hub {
+                display: none;
+            }
+
+            .solution-node {
+                padding: 20px 16px;
+                border-radius: 14px;
+            }
+
+            .node-icon-wrapper {
+                width: 52px;
+                height: 52px;
+                margin-bottom: 10px;
+            }
+
+            .node-icon-wrapper svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .node-content h3 {
+                font-size: 0.85rem;
+                letter-spacing: 0.03em;
+                margin-bottom: 6px;
+            }
+
+            .node-content p {
+                font-size: 0.8rem;
+                line-height: 1.5;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .solution-section {
+                padding: 60px 0 40px;
+            }
+
+            .solution-hub-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 0 12px;
+            }
+
+            .central-hub {
+                display: none;
+            }
+
+            .solution-node {
+                flex-direction: row;
+                align-items: flex-start;
+                text-align: left;
+                gap: 14px;
+                padding: 18px 16px;
+            }
+
+            .node-icon-wrapper {
+                min-width: 48px;
+                width: 48px;
+                height: 48px;
+                margin: 0;
+            }
+
+            .node-icon-wrapper svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .node-content h3 {
+                font-size: 0.82rem;
+                margin-bottom: 4px;
+            }
+
+            .node-content p {
+                font-size: 0.78rem;
             }
         }
 
         /* Automated Intelligence Journey Styles */
+
+        /* Journey Heading Classes */
+        .journey-heading-wrap {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .journey-title-block {
+            display: inline-block;
+            position: relative;
+        }
+
+        .journey-title {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 50%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0;
+            line-height: 1.2;
+            display: inline-block;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .journey-underline {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+            border-radius: 2px;
+            animation: lineGlow 2s ease-in-out infinite;
+        }
+
+        .journey-subtitle {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #6b7280;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .journey-title {
+                font-size: 1.75rem;
+                line-height: 1.25;
+            }
+            .journey-heading-wrap {
+                margin-bottom: 10px;
+            }
+            .journey-subtitle {
+                font-size: 0.95rem;
+                margin-top: 18px;
+                line-height: 1.65;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .journey-title {
+                font-size: 1.4rem;
+                line-height: 1.2;
+            }
+            .journey-subtitle {
+                font-size: 0.88rem;
+                margin-top: 14px;
+            }
+        }
+
         .journey-section {
             min-height: 100vh;
             display: flex;
@@ -2166,17 +2675,109 @@
         @media (max-width: 1024px) {
             .journey-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
         }
 
         @media (max-width: 768px) {
             .journey-section {
-                height: auto;
                 min-height: auto;
+                padding: 70px 0 50px;
+                overflow: visible;
+            }
+
+            .journey-container {
+                padding: 0 14px;
+            }
+
+            .journey-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+                margin-top: 24px;
+            }
+
+            .journey-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+                overflow: visible; /* Let step-number badge breathe */
+            }
+
+            .step-number {
+                top: -14px;
+                right: -12px;
+                width: 38px;
+                height: 38px;
+                font-size: 0.95rem;
+                border-width: 3px;
+            }
+
+            .journey-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 12px;
+                margin-bottom: 16px;
+                animation: none; /* disable float on mobile */
+            }
+
+            .journey-card h3 {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+
+            .journey-card p {
+                font-size: 0.88rem;
+                line-height: 1.55;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .journey-section {
+                padding: 60px 0 40px;
+            }
+
+            .journey-container {
+                padding: 0 12px;
             }
 
             .journey-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
+                margin-top: 20px;
+            }
+
+            .journey-card {
+                flex-direction: row;
+                align-items: flex-start;
+                padding: 18px 16px;
+                gap: 14px;
+                border-radius: 16px;
+            }
+
+            .step-number {
+                top: -12px;
+                right: -10px;
+                width: 34px;
+                height: 34px;
+                font-size: 0.85rem;
+            }
+
+            .journey-icon {
+                min-width: 44px;
+                width: 44px;
+                height: 44px;
+                margin-bottom: 0;
+                border-radius: 12px;
+                flex-shrink: 0;
+            }
+
+            .journey-card h3 {
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+            }
+
+            .journey-card p {
+                font-size: 0.82rem;
+                line-height: 1.5;
             }
         }
 
@@ -2208,6 +2809,200 @@
         }
 
 
+
+        /* ── Why TrackerBI Section ── */
+        .why-heading-wrap {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .why-title-block {
+            display: inline-block;
+            position: relative;
+        }
+
+        .why-title {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 50%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 0;
+            line-height: 1.15;
+            display: inline-block;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .why-underline {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+            border-radius: 2px;
+            animation: lineGlow 2s ease-in-out infinite;
+        }
+
+        .why-subtitle {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #6b7280;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .why-heading-wrap {
+                margin-bottom: 36px;
+            }
+            .why-title {
+                font-size: 2rem;
+            }
+            .why-subtitle {
+                font-size: 0.95rem;
+                margin-top: 20px;
+                line-height: 1.7;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .why-heading-wrap {
+                margin-bottom: 28px;
+            }
+            .why-title {
+                font-size: 1.6rem;
+                line-height: 1.2;
+            }
+            .why-subtitle {
+                font-size: 0.88rem;
+                margin-top: 16px;
+            }
+        }
+
+        /* ── End-to-End Visibility Section ── */
+        .e2e-heading-wrap {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .e2e-title-block {
+            display: inline-block;
+            position: relative;
+        }
+
+        .e2e-title {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 0;
+            line-height: 1.15;
+            display: inline-block;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .e2e-underline {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #7c3aed, transparent);
+            border-radius: 2px;
+            animation: lineGlow 2s ease-in-out infinite;
+        }
+
+        .e2e-subtitle {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #6b7280;
+            line-height: 1.8;
+        }
+
+        .e2e-banner {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            padding: 80px 60px;
+            border-radius: 24px;
+            color: white;
+            text-align: center;
+            margin-top: 60px;
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);
+        }
+
+        .e2e-banner h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .e2e-banner p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .e2e-heading-wrap {
+                margin-bottom: 36px;
+            }
+            .e2e-title {
+                font-size: 2rem;
+            }
+            .e2e-subtitle {
+                font-size: 0.95rem;
+                margin-top: 20px;
+                line-height: 1.7;
+            }
+            .e2e-banner {
+                padding: 48px 28px;
+                border-radius: 18px;
+                margin-top: 36px;
+            }
+            .e2e-banner h3 {
+                font-size: 1.6rem;
+                margin-bottom: 16px;
+            }
+            .e2e-banner p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .e2e-heading-wrap {
+                margin-bottom: 28px;
+            }
+            .e2e-title {
+                font-size: 1.6rem;
+                line-height: 1.2;
+            }
+            .e2e-subtitle {
+                font-size: 0.88rem;
+                margin-top: 16px;
+            }
+            .e2e-banner {
+                padding: 36px 20px;
+                border-radius: 16px;
+                margin-top: 28px;
+            }
+            .e2e-banner h3 {
+                font-size: 1.3rem;
+                margin-bottom: 12px;
+                line-height: 1.25;
+            }
+            .e2e-banner p {
+                font-size: 0.88rem;
+                line-height: 1.65;
+            }
+        }
 
         /* Toast Notification Styles */
         .toast-container {
@@ -2397,38 +3192,11 @@
 
     <!-- The Challenge Section -->
     <section class="challenge-section" id="challenge">
-        <div class="container" style="text-align: center; margin-bottom: 80px; position: relative; z-index: 3;">
-            <div style="display: inline-block; position: relative;">
-                <h2 class="section-title" style="
-                    color: var(--gray-900); 
-                    font-size: 3.5rem; 
-                    margin-bottom: 10px; 
-                    line-height: 1.1;
-                    font-weight: 900;
-                    animation: titleGlow 3s ease-in-out infinite;
-                ">Disconnected Systems.</h2>
-                <h2 class="section-title" style="
-                    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                    font-size: 3.5rem; 
-                    line-height: 1.1;
-                    font-weight: 900;
-                    margin-bottom: 0;
-                    animation: titleGlow 3s ease-in-out infinite;
-                ">Disjointed Growth.</h2>
-                <div style="
-                    position: absolute;
-                    bottom: -10px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 200px;
-                    height: 4px;
-                    background: linear-gradient(90deg, transparent, #a78bfa, transparent);
-                    border-radius: 2px;
-                    animation: lineGlow 2s ease-in-out infinite;
-                "></div>
+        <div class="container vision-heading-wrap">
+            <div class="vision-title-block">
+                <h2 class="section-title vision-title plain">Disconnected Systems.</h2>
+                <h2 class="section-title vision-title gradient">Disjointed Growth.</h2>
+                <div class="vision-underline"></div>
             </div>
         </div>
 
@@ -2465,53 +3233,14 @@
     <!-- The Solution Section -->
     <section class="solution-section" id="solution">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 20px; position: relative; margin-top: 50px;">
-                <div style="display: inline-block; position: relative;">
-                    <h2 class="section-title" style="
-                        background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 50%, #7c3aed 100%);
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                        font-size: 2.8rem;
-                        font-weight: 900;
-                        margin-bottom: 0;
-                        line-height: 1.2;
-                        position: relative;
-                        display: inline-block;
-                        animation: titleGlow 3s ease-in-out infinite;
-                    ">
-                        Your Unified Growth Intelligence Platform
-                    </h2>
-                    <div style="
-                        position: absolute;
-                        bottom: -10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 200px;
-                        height: 4px;
-                        background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
-                        border-radius: 2px;
-                        animation: lineGlow 2s ease-in-out infinite;
-                    "></div>
+            <div class="sol-heading-wrap">
+                <div class="sol-title-block">
+                    <h2 class="section-title sol-title">Your Unified Growth Intelligence Platform</h2>
+                    <div class="sol-underline"></div>
                 </div>
-                <p class="section-subtitle" style="
-                    margin-top: 30px;
-                    font-size: 1.3rem;
-                    color: #6b7280;
-                    max-width: 800px;
-                    margin-left: auto;
-                    margin-right: auto;
-                    line-height: 1.8;
-                    position: relative;
-                ">
+                <p class="section-subtitle sol-subtitle">
                     TrackerBI.ai brings every customer touchpoint into
-                    <span style="
-                        background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                        font-weight: 700;
-                    ">one command center</span>.
+                    <span class="gradient-text-purple">one command center</span>.
                 </p>
             </div>
 
@@ -2597,40 +3326,14 @@
     <!-- Automated Intelligence Journey Section -->
     <section class="journey-section" id="how-it-works">
         <div class="container journey-container">
-            <div style="text-align: center; margin-bottom: 20px;">
-                <div style="display: inline-block; position: relative;">
-                    <h2 class="section-title" style="
-                        background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 50%, #7c3aed 100%);
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                        font-size: 2.5rem;
-                        font-weight: 900;
-                        margin-bottom: 0;
-                        animation: titleGlow 3s ease-in-out infinite;
-                    ">From Click to Conversion — Automated Intelligence</h2>
-                    <div style="
-                        position: absolute;
-                        bottom: -10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 200px;
-                        height: 4px;
-                        background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
-                        border-radius: 2px;
-                        animation: lineGlow 2s ease-in-out infinite;
-                    "></div>
+            <div class="journey-heading-wrap">
+                <div class="journey-title-block">
+                    <h2 class="section-title journey-title">From Click to Conversion — Automated Intelligence</h2>
+                    <div class="journey-underline"></div>
                 </div>
-                <p class="section-subtitle"
-                    style="margin-top: 30px; font-size: 1.2rem; color: #6b7280; line-height: 1.8;">
+                <p class="section-subtitle journey-subtitle">
                     TrackerBI.ai orchestrates your entire customer journey with
-                    <span style="
-                        background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                        font-weight: 700;
-                    ">seamless automation</span>.
+                    <span class="gradient-text-purple">seamless automation</span>.
                 </p>
             </div>
 
@@ -2729,43 +3432,21 @@
     <!-- End-to-End Visibility Section -->
     <section class="section">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <div style="display: inline-block; position: relative;">
-                    <h2 class="section-title" style="
-                        background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 50%, #8b5cf6 100%);
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                        font-size: 3rem;
-                        font-weight: 900;
-                        margin-bottom: 0;
-                        animation: titleGlow 3s ease-in-out infinite;
-                    ">End-to-End Visibility</h2>
-                    <div style="
-                        position: absolute;
-                        bottom: -10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 150px;
-                        height: 4px;
-                        background: linear-gradient(90deg, transparent, #7c3aed, transparent);
-                        border-radius: 2px;
-                        animation: lineGlow 2s ease-in-out infinite;
-                    "></div>
+            <div class="e2e-heading-wrap">
+                <div class="e2e-title-block">
+                    <h2 class="section-title e2e-title">End-to-End Visibility</h2>
+                    <div class="e2e-underline"></div>
                 </div>
-                <p class="section-subtitle"
-                    style="margin-top: 30px; font-size: 1.2rem; color: #6b7280; line-height: 1.8;">
+                <p class="section-subtitle e2e-subtitle">
                     Gain complete control over your customer journey.<br>
                     From ads and calls to visits and feedback — TrackerBI.ai tracks, analyzes, and optimizes every
                     interaction.
                 </p>
             </div>
 
-            <div
-                style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); padding: 80px 60px; border-radius: 24px; color: white; text-align: center; margin-top: 60px; box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);">
-                <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 24px; line-height: 1.2;">One Platform.
-                    Total Clarity. Real Growth.</h3>
-                <p style="font-size: 1.2rem; opacity: 0.95; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+            <div class="e2e-banner">
+                <h3>One Platform. Total Clarity. Real Growth.</h3>
+                <p>
                     Track every customer touchpoint from first impression to final conversion. See what works, what
                     doesn't, and where to optimize for maximum ROI.
                 </p>
@@ -2776,39 +3457,13 @@
     <!-- Why TrackerBI Section -->
     <section class="section" id="why-trackerbi" style="background: var(--gray-50);">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <div style="display: inline-block; position: relative;">
-                    <h2 class="section-title" style="
-                        background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 50%, #7c3aed 100%);
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                        font-size: 3rem;
-                        font-weight: 900;
-                        margin-bottom: 0;
-                        animation: titleGlow 3s ease-in-out infinite;
-                    ">Why TrackerBI.ai</h2>
-                    <div style="
-                        position: absolute;
-                        bottom: -10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 150px;
-                        height: 4px;
-                        background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
-                        border-radius: 2px;
-                        animation: lineGlow 2s ease-in-out infinite;
-                    "></div>
+            <div class="why-heading-wrap">
+                <div class="why-title-block">
+                    <h2 class="section-title why-title">Why TrackerBI.ai</h2>
+                    <div class="why-underline"></div>
                 </div>
-                <p class="section-subtitle"
-                    style="margin-top: 30px; font-size: 1.2rem; color: #6b7280; line-height: 1.8;">
-                    Built for <span style="
-                        background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                        font-weight: 700;
-                    ">marketers, sales teams, and business owners</span> who demand results.
+                <p class="section-subtitle why-subtitle">
+                    Built for <span class="gradient-text-purple">marketers, sales teams, and business owners</span> who demand results.
                 </p>
             </div>
 
